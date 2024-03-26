@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { MdSearch } from 'react-icons/md';
 import featchProducts from '../../api/featchProducts';
+import AppContext from '../../context/AppContext';
 
 import './SearchBar.css';
 
 function SearchBar() {
 
   const [searchValue, setSearchValue] = useState('');
+
+  const { name } = useContext(AppContext);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -19,6 +22,7 @@ function SearchBar() {
 
   return (
     <form className="search-bar" onSubmit={handleSearch}>
+      {name}
       <input
         type="search"
         value={searchValue}
