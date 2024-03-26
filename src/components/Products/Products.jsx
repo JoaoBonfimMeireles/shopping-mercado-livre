@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './Products.css';
 import featchProducts from '../../api/featchProducts';
 import ProductsCard from '../ProductCard/ProductCard';
+import Loading from '../Loading/Loading';
 
 function Products() {
 
@@ -16,9 +17,8 @@ function Products() {
 
   return (
     <section className="products container">
-      {
-        products.map((product) => <ProductsCard key={product.id} data={product}/>)
-      }
+      <Loading />
+      {products.map((product) => <ProductsCard key={product.id} data={product} />)}
     </section>
   );
 }
