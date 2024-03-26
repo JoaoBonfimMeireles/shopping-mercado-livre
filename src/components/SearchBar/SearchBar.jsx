@@ -7,22 +7,21 @@ import './SearchBar.css';
 
 function SearchBar() {
 
+  const { setProducts, setLoading } = useContext(AppContext);
   const [searchValue, setSearchValue] = useState('');
-
-  const { name } = useContext(AppContext);
 
   const handleSearch = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const products = await featchProducts(searchValue);
-    console.log(products.results);
+    setProducts(products.results);
+    setLoading(false);
     setSearchValue('');
   };
 
 
   return (
     <form className="search-bar" onSubmit={handleSearch}>
-      {name}
       <input
         type="search"
         value={searchValue}
